@@ -27,81 +27,81 @@ using namespace std;
 #define green_color "\033[38;5;150m"
 
 int main() {
-  listE list;
-  int menuopc = 0;
-  
-  fstream file;
-  file.open("list.txt", fstream::out|fstream::in); 
-  if (!file.is_open()) {
-    cout << "Error, could not open the file\n";
-    return 1;
-  }
-  
-  Stock_boot(list);
-  Stock_load(list, file);
-
-  pcDesligado(); 
-  this_thread::sleep_for(chrono::seconds(3)); // Exibe o pc desligado por 3 segundos
-  clear();
-  aparecePrograma();
-  this_thread::sleep_for(chrono::seconds(3)); // Exibe a agenda abrindo por 3 segundos
-  clear();
-
-  do {
-    produto *prod = new produto;
-    int cod;
-
-    clear();
-    imprime_menu();
-    imprime_list(list);
-
-    cout << "Digite a opção desejada: ";
-    cin >> menuopc;
-    switch (menuopc) {
-    case 1:
-      clear();
-      imprime_list(list);
-      criar_produto(list, prod);
-      insere_elemento_list(list, prod);
-      break;
-
-    case 2:
-      clear();
-      imprime_list(list);
-
-      cout << "Digite o código do produto: ";
-      cin >> cod;
-      consultar_produto(list, cod);
-      voltarMenu();
-      break;
-
-    case 3:
-      clear();
-      imprime_list(list);
-
-      cout << "Digite o código do produto: ";
-      cin >> cod;
-      while (cod <= 0 ) {
-        cout << "Código inválido. Digite um código > 0!\n";
-        cin >> cod;
-      }
-      remover_produto(list, cod);
-      voltarMenu();
-      break;
+    Stock_list list;
+    int option = 0;
+    
+    fstream file;
+    file.open("list.txt", fstream::out|fstream::in); 
+    if (!file.is_open()) {
+        cout << "Error, could not open the file\n";
+        return 1;
     }
-  } while (menuopc != 4); 
-
-  gravar_list(list, file);
-  limpar_list(list);
-
-  clear();
-  encerraPrograma();
-  this_thread::sleep_for(chrono::seconds(3)); // Exibe a tela de saida por 3 segundos
-  clear();
-  pcDesligado();
-  this_thread::sleep_for(chrono::seconds(3)); // Exibe o pc desligado por 3 segundos
-  clear();
-
-  file.close(); // Fecha o fileuivo
-  return 0;
+    
+    Stock_boot(list);
+    Stock_load(list, file);
+  
+    animation01(); 
+    this_thread::sleep_for(chrono::seconds(3));
+    clear();
+    animation02();
+    this_thread::sleep_for(chrono::seconds(3));
+    clear();
+  
+    do {
+      produto *prod = new produto;
+      int cod;
+  
+      clear();
+      imprime_menu();
+      imprime_list(list);
+  
+      cout << "Digite a opção desejada: ";
+      cin >> option;
+      switch (option) {
+      case 1:
+        clear();
+        imprime_list(list);
+        criar_produto(list, prod);
+        insere_elemento_list(list, prod);
+        break;
+  
+      case 2:
+        clear();
+        imprime_list(list);
+  
+        cout << "Digite o código do produto: ";
+        cin >> cod;
+        consultar_produto(list, cod);
+        voltarMenu();
+        break;
+  
+      case 3:
+        clear();
+        imprime_list(list);
+  
+        cout << "Digite o código do produto: ";
+        cin >> cod;
+        while (cod <= 0 ) {
+          cout << "Código inválido. Digite um código > 0!\n";
+          cin >> cod;
+        }
+        remover_produto(list, cod);
+        voltarMenu();
+        break;
+      }
+    } while (option != 4); 
+  
+    gravar_list(list, file);
+    limpar_list(list);
+  
+    clear();
+    encerraPrograma();
+    this_thread::sleep_for(chrono::seconds(3)); // Exibe a tela de saida por 3 segundos
+    clear();
+    pcDesligado();
+    this_thread::sleep_for(chrono::seconds(3)); // Exibe o pc desligado por 3 segundos
+    clear();
+  
+    file.close(); // Fecha o fileuivo
+    return 0;
 }
