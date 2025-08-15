@@ -1,5 +1,4 @@
 #include <iostream>
-#include <locale.h>
 #include <fstream>
 #include <chrono> 
 #include <thread>
