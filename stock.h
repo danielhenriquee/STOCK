@@ -112,7 +112,7 @@ void Stock_remove(Stock_list &list, int cod) {
 }
 
 //  Search product
-void Stock_search(const Stock_list *list, int cod) {
+void Stock_search(const Stock_list &list, int cod) {
     Stock_product *p = Stock_recursiveSearch(list.start, cod);
 
     if (p != nullptr) {
