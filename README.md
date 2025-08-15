@@ -6,13 +6,13 @@ Developed with dynamic memory allocation, pointers, recursion, and modular progr
 
 **Project Structure**
 
-├── main.cpp // Main program logic and menu loop
+├─ main.cpp // Main program logic and menu loop
 
-├── stock.h // Product list structures and operations
+├─ stock.h // Product list structures and operations
 
-├── menu.h // Menu display and UI animations
+├─ menu.h // Menu display and UI animations
 
-└── list.txt // Persistent storage for product data
+└─ list.txt // Persistent storage for product data
 
 **Features**
 - Dynamic insertion of products at the beginning of the list
