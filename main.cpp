@@ -1,10 +1,10 @@
 // Daniel Henrique da Silva, Samuel Alfonso Werner Stuhlert, Victor Menezes Ferreira
 
 /*
-- Armazenar um número indeterminado de produtos (a inserção no início da list
-- Permitir a eliminação de qualquer produto da list, identificando-o pelo código
-- A relação dos produtos deve estar sempre presente na tela, mostrando todos os produtos da list (junto com o menu de opções)
-- Opção de consulta, onde o usuário informa um código e o sistema informa o preço do produto ou 0 (zero) caso o produto não exista
+- Armazenar um número indeterminado de products (a inserção no início da list
+- Permitir a eliminação de qualquer product da list, identificando-o pelo código
+- A relação dos products deve estar sempre presente na tela, mostrando todos os products da list (junto com o menu de opções)
+- Opção de consulta, onde o usuário informa um código e o sistema informa o preço do product ou 0 (zero) caso o product não exista
 - Armazenar a list completa em fileuivo (texto) que deve ser recuperado toda vez que o programa for iniciado
 
 Utilize uma biblioteca para as operações da list e Structs da list.
@@ -48,7 +48,7 @@ int main() {
     clear();
   
     do {
-        produto *prod = new produto;
+        product *prod = new product;
         int cod;
   
         clear();
