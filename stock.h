@@ -1,8 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <chrono> 
-#include <thread>
 using namespace std;
+
 #define reset_color "\033[0m"
 #define blue_color "\033[0;34m"
 #define green_color "\033[38;5;150m"
@@ -27,7 +26,7 @@ bool Stock_boot(Stock_list &list) {
 }
 
 // Print all list products
-bool Stock_print(Stock_list &list) {
+bool Stock_print(const Stock_list &list) {
     Stock_product *p = list.start;
     cout << blue_color << "╔─────────────────────────────────────╗" << endl;
     cout << "│      " << reset_color << "  - list de Stock_products -" << blue_color << "        │" << endl;
@@ -113,7 +112,7 @@ void Stock_remove(Stock_list &list, int cod) {
 }
 
 //  Search product
-void Stock_search(Stock_list list, int cod) {
+void Stock_search(const Stock_list *list, int cod) {
     Stock_product *p = Stock_recursiveSearch(list.start, cod);
 
     if (p != nullptr) {
