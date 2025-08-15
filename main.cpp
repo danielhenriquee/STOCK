@@ -48,60 +48,60 @@ int main() {
     clear();
   
     do {
-      produto *prod = new produto;
-      int cod;
+        produto *prod = new produto;
+        int cod;
   
-      clear();
-      imprime_menu();
-      imprime_list(list);
-  
-      cout << "Digite a opção desejada: ";
-      cin >> option;
-      switch (option) {
-      case 1:
         clear();
-        imprime_list(list);
-        criar_produto(list, prod);
-        insere_elemento_list(list, prod);
-        break;
-  
-      case 2:
-        clear();
+        imprime_menu();
         imprime_list(list);
   
-        cout << "Digite o código do produto: ";
-        cin >> cod;
-        consultar_produto(list, cod);
-        voltarMenu();
-        break;
+        cout << "Type an option: ";
+        cin >> option;
+        switch (option) {
+        case 1:
+            clear();
+            Stock_print(list);
+            Stock_create(list, prod);
+            Stock_insert(list, prod);
+            break;
+    
+        case 2:
+            clear();
+            Stock_print(list);
+      
+            cout << "Type product code: ";
+            cin >> cod;
+            Stock_search(list, cod);
+            back2menu();
+            break;
   
-      case 3:
-        clear();
-        imprime_list(list);
-  
-        cout << "Digite o código do produto: ";
-        cin >> cod;
-        while (cod <= 0 ) {
-          cout << "Código inválido. Digite um código > 0!\n";
-          cin >> cod;
+        case 3:
+            clear();
+            Stock_print(list);
+      
+            cout << "Type product code: ";
+            cin >> cod;
+            while (cod <= 0 ) {
+              cout << "Invalid code, must be > 0!\n";
+              cin >> cod;
+            }
+            Stock_remove(list, cod);
+            back2menu();
+            break;
         }
-        remover_produto(list, cod);
-        voltarMenu();
-        break;
-      }
     } while (option != 4); 
   
-    gravar_list(list, file);
-    limpar_list(list);
+    Stock_save(list, file);
+    Stock_destroy(list);
   
     clear();
-    encerraPrograma();
-    this_thread::sleep_for(chrono::seconds(3)); // Exibe a tela de saida por 3 segundos
+    animation03();
+    this_thread::sleep_for(chrono::seconds(3));
     clear();
-    pcDesligado();
-    this_thread::sleep_for(chrono::seconds(3)); // Exibe o pc desligado por 3 segundos
+    animation01();
+    this_thread::sleep_for(chrono::seconds(3));
     clear();
   
-    file.close(); // Fecha o fileuivo
+    file.close();
     return 0;
 }
