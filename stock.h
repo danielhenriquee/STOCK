@@ -32,7 +32,7 @@ bool Stock_print(const Stock_list &list) {
     cout << "│      " << reset_color << "  - list de Stock_products -" << blue_color << "        │" << endl;
     cout << "╚─────────────────────────────────────╝" << endl << reset_color;
 
-    while (p != NULL) {
+    while (p != nullptr) {
         cout << green_color << "  Name: " << reset_color << p->name << endl;
         cout << green_color << "  Price: " << reset_color << "US$ " << p->price << endl;
         cout << green_color << "  Code: " << reset_color << p->code << endl;
@@ -156,7 +156,7 @@ void Stock_save(const Stock_list &list) {
 // Destroy list
 void Stock_destroy(Stock_list &list) {
     Stock_product *current = list.start;
-    while (current != NULL) {
+    while (current != nullptr) {
         Stock_product *next = current->next;
         delete current;
         current = next;
