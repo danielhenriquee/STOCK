@@ -31,10 +31,11 @@ int main() {
     int option = 0;
     
     fstream file;
-    file.open("list.txt", fstream::out|fstream::in); 
+    file.open("list.txt", ios::in | ios::out | ios::app);
     if (!file.is_open()) {
-        cout << "Error, could not open the file\n";
-        return 1;
+        ofstream create("list.txt");
+        create.close();
+        file.open("list.txt", ios::in | ios::out | ios::app);
     }
     
     Stock_boot(list);
@@ -62,12 +63,11 @@ int main() {
         }
         switch (option) {
         case 1:
-            product *prod = new product;
+            Stock_product *prod = new product;
             clear();
             Stock_print(list);
             Stock_create(list, prod);
             Stock_insert(list, prod);
-            delete prod;
             break;
     
         case 2:
