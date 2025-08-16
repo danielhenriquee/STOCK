@@ -160,4 +160,5 @@ void Stock_destroy(Stock_list &list) {
         delete current;
         current = next;
     }
+    list.start = nullptr;
 }
