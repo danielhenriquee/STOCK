@@ -53,31 +53,35 @@ Stock_product* Stock_recursiveSearch(Stock_product *p, int cod) {
 
 // Create product
 void Stock_create(Stock_list &list, Stock_product *prod) {
-    cout << green_color << "Type the product name:\n" << reset_color ;
+    cout << green_color << "Type the product name:\n" << reset_color;
     cin.ignore();
     cin.getline(prod->name, 30);
 
-    cout << green_color << "Type the product code:\n" << reset_color ;
-    cin >> prod->code;
+    do {
+        cout << green_color << "Type the product code:\n" << reset_color;
+        cin >> prod->code;
 
-    while (prod->code <= 0 || Stock_recursiveSearch(list.start, prod->code) != nullptr) {
         if (prod->code <= 0) {
             cout << "Invalid code, must be > 0!\n";
-        } else {
+        } 
+        else if (Stock_recursiveSearch(list.start, prod->code) != nullptr) {
             cout << "This code already exists, try again.\n";
+        } 
+        else {
+            break;
         }
-    
-        cout << green_color << "Type the product code:\n" << reset_color ;
-        cin >> prod->code;
-    }
+    } while (true);
 
-    cout << green_color << "Type the product price: \n" << reset_color ;
-    cin >> prod->price;
-
-    while (prod->price <= 0) { 
-        cout << "Price invalid. must be > 0!\n";
+    do {
+        cout << green_color << "Type the product price:\n" << reset_color;
         cin >> prod->price;
-    }
+
+        if (prod->price <= 0) {
+            cout << "Invalid price, must be > 0!\n";
+        } else {
+            break;
+        }
+    } while (true);
 }
 
 // Insert product in the list
