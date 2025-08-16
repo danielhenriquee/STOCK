@@ -55,12 +55,7 @@ int main() {
         imprime_menu();
         imprime_list(list);
   
-        if (!(cin >> option)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input!\n";
-            continue;
-        }
+        cin >> option;
         switch (option) {
         case 1:
             Stock_product *prod = new product;
