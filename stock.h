@@ -143,9 +143,8 @@ void Stock_load (Stock_list &list, fstream &file) {
 }
 
 // Save list on external file
-void Stock_save(const Stock_list &list, fstream &file) {
-    file.close();
-    file.open("list.txt", ios::out | ios::trunc);
+void Stock_save(const Stock_list &list) {
+    ofstream file("list.txt", ios::out | ios::trunc);
     Stock_product *current = list.start;
     while (current != nullptr) {
         file << current->code << "," << current->name << "," << current->price << endl;
