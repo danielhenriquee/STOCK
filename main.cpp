@@ -1,19 +1,3 @@
-// Daniel Henrique da Silva, Samuel Alfonso Werner Stuhlert, Victor Menezes Ferreira
-
-/*
-- Armazenar um número indeterminado de products (a inserção no início da list
-- Permitir a eliminação de qualquer product da list, identificando-o pelo código
-- A relação dos products deve estar sempre presente na tela, mostrando todos os products da list (junto com o menu de opções)
-- Opção de consulta, onde o usuário informa um código e o sistema informa o preço do product ou 0 (zero) caso o product não exista
-- Armazenar a list completa em fileuivo (texto) que deve ser recuperado toda vez que o programa for iniciado
-
-Utilize uma biblioteca para as operações da list e Structs da list.
-- Utilize Recursividade.
-- Utilize alocação dinâmica de memória e ponteiros.
-- Utilize sub-rotinas.
-- Não utilize variáveis globais.
-*/
-
 #include <iostream>
 #include <fstream>
 #include <chrono> 
