@@ -19,19 +19,17 @@ Developed with dynamic memory allocation, pointers, recursion, and modular progr
 - Removal of products by code
 - Real-time listing of all products with menu always displayed
 - Search function to find a product's price by its code
-- Persistent storage — product list saved to 'list.txt' and loaded on startup
+- Persistent storage: product list saved to 'list.txt' and loaded on startup
 - Recursive operations for list processing
-- Dynamic memory allocation** using pointers
-- No global variables** — clean modular design
+- Dynamic memory allocation using pointers
+- No global variables: clean modular design
+- ANSI escape codes for colored output
+- Startup and exit "animations"
 
 **How to Compile and Run**
 - g++ main.cpp -o stock
 - ./stock
 
-Ensure that list.txt exists in the same directory as the executable.
-If it doesn’t exist, create an empty file before running.
-
 **Notes**
-- ANSI escape codes are used for colored output.
-- Includes startup and exit animations.
+- Ensure that list.txt exists in the same directory as the executable. If it doesn’t exist, the program will create an empty file automatically.
 - Tested on Linux and Windows (via MinGW/G++).
