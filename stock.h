@@ -92,27 +92,24 @@ bool Stock_insert(Stock_list &list, Stock_product *prod) {
 }
 
 // Remove product in the list
-void Stock_remove(Stock_list &list, int cod) {
+bool Stock_remove(Stock_list &list, int cod) {
     Stock_product *p = list.start;
     Stock_product *prev = nullptr;
-    bool found = false;
     while (p != nullptr) { // Navigate until the last element
         if (cod == p->code) {
             if (prev == nullptr) { // If true, it is the first element
                 list.start = p->next; 
-                found = true;
             } else {
                 prev->next = p->next;
-                found = true;
             }
-            break;
+            delete p;
+            return true;
         }
         prev = p;
         p = p->next;
     }
-    if (found == false) {
-        cout << "There is no product with this code!\n";
-    }
+    cout << "There is no product with this code!\n";
+    return false;
 }
 
 //  Search product
@@ -120,9 +117,12 @@ void Stock_search(const Stock_list &list, int cod) {
     Stock_product *p = Stock_recursiveSearch(list.start, cod);
 
     if (p != nullptr) {
-        cout << "Price: US$ " << p->price << endl;
+        cout << green_color << "Product found!\n" << reset_color;
+        cout << "  Name: " << p->name << endl;
+        cout << "  Price: US$ " << p->price << endl;
+        cout << "  Code: " << p->code << endl;
     } else {
-        cout << 0 << endl;
+        cout << "No product found with this code.\n";
     }
 }
 
@@ -131,7 +131,8 @@ void Stock_load (Stock_list &list, fstream &file) {
     Stock_product fileProd;
     char splitter;
   
-    while (file >> fileProd.code >> splitter) {
+    while (file >> fileProd.code) {
+        file.ignore(1); // Ignore ,
         file.getline(fileProd.name, 30, ',');
         file >> fileProd.price;
     
@@ -142,7 +143,7 @@ void Stock_load (Stock_list &list, fstream &file) {
 }
 
 // Save list on external file
-void Stock_save(Stock_list &list, fstream &file) {
+void Stock_save(const Stock_list &list, fstream &file) {
     Stock_product *current = list.start;
     while (current != nullptr) {
         file << current->code << "," << current->name << "," << current->price << endl;
