@@ -48,21 +48,26 @@ int main() {
     clear();
   
     do {
-        product *prod = new product;
         int cod;
   
         clear();
         imprime_menu();
         imprime_list(list);
   
-        cout << "Type an option: ";
-        cin >> option;
+        if (!(cin >> option)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input!\n";
+            continue;
+        }
         switch (option) {
         case 1:
+            product *prod = new product;
             clear();
             Stock_print(list);
             Stock_create(list, prod);
             Stock_insert(list, prod);
+            delete prod;
             break;
     
         case 2:
@@ -88,7 +93,13 @@ int main() {
             Stock_remove(list, cod);
             back2menu();
             break;
+
+        default: 
+            cout << "Invalid option!\n";
+            back2menu();
+            break;
         }
+        
     } while (option != 4); 
   
     Stock_save(list, file);
