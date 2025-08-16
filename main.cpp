@@ -30,17 +30,17 @@ int main() {
     Stock_list list;
     int option = 0;
     
-    fstream file;
-    file.open("list.txt", ios::in | ios::out | ios::app);
+    fstream file("list.txt", ios::in);
     if (!file.is_open()) {
         ofstream create("list.txt");
         create.close();
-        file.open("list.txt", ios::in | ios::out | ios::app);
+        file.open("list.txt", ios::in);
     }
     
     Stock_boot(list);
     Stock_load(list, file);
-  
+    file.close();
+    
     animation01(); 
     this_thread::sleep_for(chrono::seconds(3));
     clear();
@@ -50,7 +50,6 @@ int main() {
   
     do {
         int cod;
-  
         clear();
         imprime_menu();
         imprime_list(list);
@@ -58,7 +57,7 @@ int main() {
         cin >> option;
         switch (option) {
         case 1:
-            Stock_product *prod = new product;
+            Stock_product *prod = new Stock_product;
             clear();
             Stock_print(list);
             Stock_create(list, prod);
@@ -68,7 +67,6 @@ int main() {
         case 2:
             clear();
             Stock_print(list);
-      
             cout << "Type product code: ";
             cin >> cod;
             Stock_search(list, cod);
@@ -78,17 +76,17 @@ int main() {
         case 3:
             clear();
             Stock_print(list);
-      
-            cout << "Type product code: ";
-            cin >> cod;
-            while (cod <= 0 ) {
-              cout << "Invalid code, must be > 0!\n";
-              cin >> cod;
-            }
+            do {
+                cout << "Type product code (> 0): ";
+                cin >> cod;
+            } while (cod <= 0);
             Stock_remove(list, cod);
             back2menu();
             break;
 
+        case 4:
+            break;
+            
         default: 
             cout << "Invalid option!\n";
             back2menu();
@@ -107,7 +105,5 @@ int main() {
     animation01();
     this_thread::sleep_for(chrono::seconds(3));
     clear();
-  
-    file.close();
     return 0;
 }
